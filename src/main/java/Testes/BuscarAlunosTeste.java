@@ -12,7 +12,6 @@ public class BuscarAlunosTeste {
 
         List<AlunoModel> alunosEncontrados = alunoController.buscarAlunos("Pedro Oliveira");
 
-
         if (!alunosEncontrados.isEmpty()) {
 
             System.out.println("Alunos encontrados com o nome 'Pedro Oliveira':");
@@ -28,3 +27,4 @@ public class BuscarAlunosTeste {
         }
     }
 }
+

@@ -6,6 +6,7 @@ import java.awt.event.*;
 public class TelaInicio extends JDialog {
     private JPanel talainicial;
     private JLabel titulo;
+    private JButton renefButton;
     private JButton buttonOK;
     private JButton buttonCancel;
 
