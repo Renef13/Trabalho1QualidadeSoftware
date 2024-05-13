@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class TelaInicio extends JDialog {
-    private JPanel contentPane;
+    private JPanel talainicial;
+    private JLabel titulo;
     private JButton buttonOK;
     private JButton buttonCancel;
 
     public TelaInicio() {
-        setContentPane(contentPane);
+        setContentPane(talainicial);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
@@ -34,7 +35,7 @@ public class TelaInicio extends JDialog {
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
+        talainicial.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }

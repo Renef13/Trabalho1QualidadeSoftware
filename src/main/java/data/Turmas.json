@@ -1,0 +1,27 @@
+{
+  "turmas": [
+    {
+      "idTurma": 1,
+      "nome": "Turma A",
+      "qtdAlunos": 3,
+      "mediaTurma": 8.5,
+      "alunos": [
+        { "idAluno": 1, "nome": "João Silva" },
+        { "idAluno": 2, "nome": "Maria Gomes" }
+      ]
+    },
+    {
+      "idTurma": 2,
+      "nome": "Turma B",
+      "qtdAlunos": 5,
+      "mediaTurma": 7.8,
+      "alunos": [
+        { "idAluno": 4, "nome": "Ana Souza" },
+        { "idAluno": 5, "nome": "Bruno Santos" },
+        { "idAluno": 6, "nome": "Clara Mendes" },
+        { "idAluno": 7, "nome": "Diego Costa" },
+        { "idAluno": 8, "nome": "Eduardo Pereira" }
+      ]
+    }
+  ]
+}

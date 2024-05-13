@@ -1,0 +1,102 @@
+{
+  "turmas": [
+    {
+      "idTurma": 1,
+      "nome": "Turma A",
+      "qtdAlunos": 3,
+      "mediaTurma": 8.5,
+      "alunos": [
+        { "idAluno": 1, "nome": "João Silva" },
+        { "idAluno": 2, "nome": "Maria Gomes" },
+        { "idAluno": 3, "nome": "Pedro Oliveira" }
+      ]
+    },
+    {
+      "idTurma": 2,
+      "nome": "Turma B",
+      "qtdAlunos": 5,
+      "mediaTurma": 7.8,
+      "alunos": [
+        { "idAluno": 4, "nome": "Ana Souza" },
+        { "idAluno": 5, "nome": "Bruno Santos" },
+        { "idAluno": 6, "nome": "Clara Mendes" },
+        { "idAluno": 7, "nome": "Diego Costa" },
+        { "idAluno": 8, "nome": "Eduardo Pereira" }
+      ]
+    }
+  ]
+}
+{
+  "alunos": [
+    {
+      "idAluno": 1,
+      "nome": "João Silva",
+      "listaNotas": [9.0, 8.5, 10.0],
+      "media": 9.17
+    },
+    {
+      "idAluno": 2,
+      "nome": "Maria Gomes",
+      "listaNotas": [7.5, 8.0, 9.5],
+      "media": 8.33
+    }
+  ]
+}
+
+[
+  {
+    "idTurma": 1,
+    "nome": "Turma A",
+    "qtdAlunos": 3,
+    "mediaTurma": 8.5,
+    "alunos": [
+      {
+        "idAluno": 1,
+        "nome": "João Silva",
+        "media": 0.0
+      },
+      {
+        "idAluno": 2,
+        "nome": "Maria Gomes",
+        "media": 0.0
+      },
+      {
+        "idAluno": 3,
+        "nome": "Pedro Oliveira",
+        "media": 0.0
+      }
+    ]
+  },
+  {
+    "idTurma": 2,
+    "nome": "Turma B",
+    "qtdAlunos": 5,
+    "mediaTurma": 7.8,
+    "alunos": [
+      {
+        "idAluno": 4,
+        "nome": "Ana Souza",
+        "media": 0.0
+      },
+      {
+        "idAluno": 5,
+        "nome": "Bruno Santos",
+        "media": 0.0
+      },
+      {
+        "idAluno": 6,
+        "nome": "Clara Mendes",
+        "media": 0.0
+      },
+      {
+        "idAluno": 7,
+        "nome": "Diego Costa",
+        "media": 0.0
+      },
+      {
+        "idAluno": 8,
+        "nome": "Eduardo Pereira",
+        "media": 0.0
+      }
+    ]
+  }

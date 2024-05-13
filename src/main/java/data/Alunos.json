@@ -1,0 +1,22 @@
+{
+  "alunos": [
+    {
+      "idAluno": 1,
+      "nome": "Paulo",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 2,
+      "nome": "Maria",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 3,
+      "nome": "Pedro",
+      "listaNotas": [],
+      "media": 0.0
+    }
+  ]
+}
