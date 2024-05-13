@@ -1,6 +1,8 @@
 package controller;
 
 import model.AlunoModel;
+import model.TurmaModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +26,14 @@ public class AlunoController {
         if (alunos != null) {
             alunos.removeIf(aluno -> aluno.getIdAluno() == idAluno);
             jsonManager.salvarDadosAlunos(alunos);
+
+            List<TurmaModel> turmas = jsonManager.carregarDadosTurmas();
+            if (turmas != null) {
+                for (TurmaModel turma : turmas) {
+                    turma.removerAluno(idAluno);
+                }
+                jsonManager.salvarDadosTurmas(turmas);
+            }
         }
     }
 
@@ -45,34 +55,24 @@ public class AlunoController {
         if (alunos != null) {
             for (AlunoModel aluno : alunos) {
                 if (aluno.getIdAluno() == idAluno) {
-                    aluno.adicionarNota(nota);
-                    jsonManager.salvarDadosAlunos(alunos);
-                    break;
-                }
-            }
-        }
-    }
 
-    public float gerarMediaAluno(int idAluno) {
-        List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
-        if (alunos != null) {
-            for (AlunoModel aluno : alunos) {
-                if (aluno.getIdAluno() == idAluno) {
-                    return aluno.calcularMedia();
-                }
-            }
-        }
-        return 0;
-    }
+                    if (aluno.getListaNotas() != null && aluno.getListaNotas().size() >= 3) {
 
-    public void substituirNotaDoAluno(int idAluno, float novaNota) {
-        List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
-        if (alunos != null) {
-            for (AlunoModel aluno : alunos) {
-                if (aluno.getIdAluno() == idAluno) {
-                    aluno.substituirNota(novaNota);
-                    jsonManager.salvarDadosAlunos(alunos);
-                    break;
+                        float mediaAtual = aluno.calcularMedia();
+                        if (mediaAtual <= 7) {
+                            aluno.adicionarNota(nota);
+                            jsonManager.salvarDadosAlunos(alunos);
+                            break;
+                        } else {
+                            System.out.println("O aluno já possui três notas e sua média é maior que 7.0. Não é possível adicionar mais notas.");
+                            return;
+                        }
+                    } else {
+
+                        aluno.adicionarNota(nota);
+                        jsonManager.salvarDadosAlunos(alunos);
+                        break;
+                    }
                 }
             }
         }
@@ -90,4 +90,17 @@ public class AlunoController {
         }
         return alunosEncontrados;
     }
+    public List<AlunoModel> buscarAlunosPorId(int idAluno) {
+        List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
+        List<AlunoModel> alunosEncontrados = new ArrayList<>();
+        if (alunos != null) {
+            for (AlunoModel aluno : alunos) {
+                if (aluno.getIdAluno() == idAluno) {
+                    alunosEncontrados.add(aluno);
+                }
+            }
+        }
+        return alunosEncontrados;
+    }
+
 }

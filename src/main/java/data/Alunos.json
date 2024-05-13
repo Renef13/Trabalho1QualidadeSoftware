@@ -2,19 +2,19 @@
   "alunos": [
     {
       "idAluno": 1,
-      "nome": "Paulo",
+      "nome": "João Silva",
       "listaNotas": [],
       "media": 0.0
     },
     {
       "idAluno": 2,
-      "nome": "Maria",
+      "nome": "Maria Gomes",
       "listaNotas": [],
       "media": 0.0
     },
     {
       "idAluno": 3,
-      "nome": "Pedro",
+      "nome": "Pedro Oliveira",
       "listaNotas": [],
       "media": 0.0
     }

@@ -16,16 +16,15 @@ public class AlunoModel {
         this.media = 0;
     }
 
-
-    public AlunoModel() {}
-
+    public AlunoModel(int idAluno, String nome, List<Float> listaNotas, float media) {
+        this.idAluno = idAluno;
+        this.nome = nome;
+        this.listaNotas = listaNotas;
+        this.media = media;
+    }
 
     public int getIdAluno() {
         return idAluno;
-    }
-
-    public void setIdAluno(int idAluno) {
-        this.idAluno = idAluno;
     }
 
     public String getNome() {
@@ -40,16 +39,8 @@ public class AlunoModel {
         return listaNotas;
     }
 
-    public void setListaNotas(List<Float> listaNotas) {
-        this.listaNotas = listaNotas;
-    }
-
     public float getMedia() {
         return media;
-    }
-
-    public void setMedia(float media) {
-        this.media = media;
     }
 
     public float calcularMedia() {
@@ -65,21 +56,6 @@ public class AlunoModel {
         media = calcularMedia();
     }
 
-    public void substituirNota(float novaNota) {
-        if (novaNota > 0) {
-            float menorNota = Float.MAX_VALUE;
-            int indiceMenorNota = -1;
-            for (int i = 0; i < listaNotas.size(); i++) {
-                if (listaNotas.get(i) < menorNota) {
-                    menorNota = listaNotas.get(i);
-                    indiceMenorNota = i;
-                }
-            }
-            if (novaNota > menorNota) {
-                listaNotas.set(indiceMenorNota, novaNota);
-                media = calcularMedia();
-            }
-        }
-    }
+
 }
 

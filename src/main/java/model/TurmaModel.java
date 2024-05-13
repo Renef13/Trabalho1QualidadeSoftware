@@ -23,10 +23,6 @@ public class TurmaModel {
         return idTurma;
     }
 
-    public void setIdTurma(int idTurma) {
-        this.idTurma = idTurma;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -39,24 +35,12 @@ public class TurmaModel {
         return qtdAlunos;
     }
 
-    public void setQtdAlunos(int qtdAlunos) {
-        this.qtdAlunos = qtdAlunos;
-    }
-
     public float getMediaTurma() {
         return mediaTurma;
     }
 
-    public void setMediaTurma(float mediaTurma) {
-        this.mediaTurma = mediaTurma;
-    }
-
     public List<AlunoModel> getAlunos() {
         return alunos;
-    }
-
-    public void setAlunos(List<AlunoModel> alunos) {
-        this.alunos = alunos;
     }
 
     public float calcularMediaTurma() {
