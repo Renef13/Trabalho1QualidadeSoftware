@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonManager {
-    private final String turmasFilePath = "/home/renef/IdeaProjects/Trabalho1QualidadeSoftware/src/main/java/data/Turmas.json";
-    private final String alunosFilePath = "/home/renef/IdeaProjects/Trabalho1QualidadeSoftware/src/main/java/data/Alunos.json";
+
+    private final String turmasFilePath = "src/main/java/data/Turmas.json";
+    private final String alunosFilePath = "src/main/java/data/Alunos.json";
     private final Gson gson;
 
     public JsonManager() {
