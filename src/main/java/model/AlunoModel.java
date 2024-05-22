@@ -43,6 +43,10 @@ public class AlunoModel {
         return media;
     }
 
+    public void setMedia(float media) {
+        this.media = media;
+    }
+
     public float calcularMedia() {
         float soma = 0;
         for (float nota : listaNotas) {
@@ -55,6 +59,7 @@ public class AlunoModel {
         listaNotas.add(nota);
         media = calcularMedia();
     }
+
 
 
 }

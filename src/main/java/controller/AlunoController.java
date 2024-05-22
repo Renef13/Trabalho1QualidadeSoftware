@@ -4,6 +4,7 @@ import model.AlunoModel;
 import model.TurmaModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AlunoController {
@@ -59,28 +60,34 @@ public class AlunoController {
         if (alunos != null) {
             for (AlunoModel aluno : alunos) {
                 if (aluno.getIdAluno() == idAluno) {
-
                     if (aluno.getListaNotas() != null && aluno.getListaNotas().size() >= 3) {
-
                         float mediaAtual = aluno.calcularMedia();
                         if (mediaAtual <= 7) {
-                            aluno.adicionarNota(nota);
-                            jsonManager.salvarDadosAlunos(alunos);
-                            break;
+                            float menorNota = Collections.min(aluno.getListaNotas());
+                            if (nota > menorNota) {
+                                aluno.getListaNotas().remove(menorNota);
+                                aluno.getListaNotas().add(nota);
+                                aluno.setMedia(aluno.calcularMedia());
+                                jsonManager.salvarDadosAlunos(alunos);
+                                System.out.println("Nota substituída.");
+                            } else {
+                                System.out.println("Nota não adicionada.");
+                            }
                         } else {
                             System.out.println("O aluno já possui três notas e sua média é maior que 7.0. Não é possível adicionar mais notas.");
                             return;
                         }
                     } else {
-
                         aluno.adicionarNota(nota);
                         jsonManager.salvarDadosAlunos(alunos);
-                        break;
+                        System.out.println("Nota adicionada com sucesso.");
+                        return;
                     }
                 }
             }
         }
     }
+
 
     public List<AlunoModel> buscarAlunos(String nome) {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();

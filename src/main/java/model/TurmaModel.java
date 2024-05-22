@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 public class TurmaModel {
+    private static final int MAX_ALUNOS = 5;
     private int idTurma;
     private String nome;
     private int qtdAlunos;
@@ -51,7 +52,10 @@ public class TurmaModel {
         return soma / alunos.size();
     }
 
-    public void adicionarAluno(AlunoModel aluno) {
+    public void adicionarAluno(AlunoModel aluno) throws Exception {
+        if (qtdAlunos >= MAX_ALUNOS) {
+            throw new Exception("A turma já possui o número máximo de alunos.");
+        }
         alunos.add(aluno);
         qtdAlunos++;
         mediaTurma = calcularMediaTurma();

@@ -84,12 +84,17 @@ public class TurmaController {
 
         for (TurmaModel turma : turmas) {
             if (turma.getIdTurma() == idTurma) {
-                turma.adicionarAluno(aluno);
-                jsonManager.salvarDadosTurmas(turmas);
-                System.out.println("Aluno adicionado à turma com sucesso.");
+                try {
+                    turma.adicionarAluno(aluno);
+                    jsonManager.salvarDadosTurmas(turmas);
+                    System.out.println("Aluno adicionado à turma com sucesso.");
+                } catch (Exception e) {
+                    System.out.println("Não foi possível adicionar o aluno à turma: " + e.getMessage());
+                }
                 return;
             }
         }
+
 
         System.out.println("Turma não encontrada.");
     }
