@@ -63,6 +63,27 @@ public class CalculoMediaTest {
 
         assertEquals(media, mediaThiago, "A média calculada não está correta.");
     }
+    @Test
+    public void testInserirNotaNegativa() {
+        AlunoController alunoController = new AlunoController();
+        TurmaController turmaController = new TurmaController();
+
+        alunoController.criarAluno("Renef Silva");
+        AlunoModel renef = alunoController.buscarAlunos("Renef Silva").getFirst();
+
+        turmaController.adicionarAlunoNaTurma("Qualidade de Software", renef);
+
+        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), -5f);
+        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 10f);
+        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 10f);
+        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 10f);
+
+        renef = alunoController.buscarAlunos("Renef Silva").getFirst();
+        System.out.println("Notas do Aluno: " + renef.getListaNotas());
+        System.out.println("Média do Aluno: " + renef.getMedia());
+
+        assertEquals(10, renef.getMedia(), "A média deve ser 10.0.");
+    }
 
 
 }

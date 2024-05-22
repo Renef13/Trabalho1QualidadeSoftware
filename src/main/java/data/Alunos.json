@@ -1,0 +1,14 @@
+{
+  "alunos": [
+    {
+      "idAluno": 1,
+      "nome": "Renef Silva",
+      "listaNotas": [
+        10.0,
+        10.0,
+        10.0
+      ],
+      "media": 10.0
+    }
+  ]
+}

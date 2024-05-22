@@ -1,5 +1,6 @@
 package model;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,9 +58,17 @@ public class AlunoModel {
     }
 
     public void adicionarNota(float nota) {
-        listaNotas.add(nota);
-        media = calcularMedia();
+        try {
+            if (nota < 0 || nota > 10) {
+                throw new IllegalArgumentException("A nota deve estar entre 0 e 10.");
+            }
+            listaNotas.add(nota);
+            media = calcularMedia();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
+
 
 
 
