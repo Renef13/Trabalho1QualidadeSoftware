@@ -68,12 +68,6 @@ public class AlunoController {
                                 aluno.getListaNotas().remove(menorNota);
                                 aluno.getListaNotas().add(nota);
                                 aluno.setMedia(aluno.calcularMedia());
-                                if (nota == 3) {
-                                    float novaMedia = aluno.calcularMedia();
-                                    System.out.println("Nota 3 adicionada. Nova média calculada: " + novaMedia);
-                                } else {
-                                    System.out.println("Nota substituída.");
-                                }
                                 jsonManager.salvarDadosAlunos(alunos);
                             } else {
                                 System.out.println("Nota não adicionada.");
