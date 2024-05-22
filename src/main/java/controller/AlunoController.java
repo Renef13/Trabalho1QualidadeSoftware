@@ -60,7 +60,7 @@ public class AlunoController {
         if (alunos != null) {
             for (AlunoModel aluno : alunos) {
                 if (aluno.getIdAluno() == idAluno) {
-                    if (aluno.getListaNotas() != null && aluno.getListaNotas().size() >= 3) {
+                    if (aluno.getListaNotas() != null && aluno.getListaNotas().size() >= aluno.getNUMAXNOTAS()) {
                         float mediaAtual = aluno.calcularMedia();
                         if (mediaAtual < 7) {
                             float menorNota = Collections.min(aluno.getListaNotas());
@@ -78,7 +78,7 @@ public class AlunoController {
                         }
                     } else {
                         aluno.adicionarNota(nota);
-                        if (aluno.getListaNotas().size() == 3) {
+                        if (aluno.getListaNotas().size() == aluno.getNUMAXNOTAS()) {
                             float novaMedia = aluno.calcularMedia();
                             System.out.println("Nova média calculada: " + novaMedia);
                         } else {
