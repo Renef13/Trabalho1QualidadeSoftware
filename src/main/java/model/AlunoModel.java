@@ -8,6 +8,7 @@ public class AlunoModel {
     private String nome;
     private List<Float> listaNotas;
     private float media;
+    private static final int DENOMINADORMEDIA = 3;
 
     public AlunoModel(int idAluno, String nome) {
         this.idAluno = idAluno;
@@ -52,7 +53,7 @@ public class AlunoModel {
         for (float nota : listaNotas) {
             soma += nota;
         }
-        return soma / listaNotas.size();
+        return soma / DENOMINADORMEDIA;
     }
 
     public void adicionarNota(float nota) {

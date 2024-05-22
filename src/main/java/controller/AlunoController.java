@@ -62,14 +62,19 @@ public class AlunoController {
                 if (aluno.getIdAluno() == idAluno) {
                     if (aluno.getListaNotas() != null && aluno.getListaNotas().size() >= 3) {
                         float mediaAtual = aluno.calcularMedia();
-                        if (mediaAtual <= 7) {
+                        if (mediaAtual < 7) {
                             float menorNota = Collections.min(aluno.getListaNotas());
                             if (nota > menorNota) {
                                 aluno.getListaNotas().remove(menorNota);
                                 aluno.getListaNotas().add(nota);
                                 aluno.setMedia(aluno.calcularMedia());
+                                if (nota == 3) {
+                                    float novaMedia = aluno.calcularMedia();
+                                    System.out.println("Nota 3 adicionada. Nova média calculada: " + novaMedia);
+                                } else {
+                                    System.out.println("Nota substituída.");
+                                }
                                 jsonManager.salvarDadosAlunos(alunos);
-                                System.out.println("Nota substituída.");
                             } else {
                                 System.out.println("Nota não adicionada.");
                             }
@@ -79,14 +84,20 @@ public class AlunoController {
                         }
                     } else {
                         aluno.adicionarNota(nota);
+                        if (aluno.getListaNotas().size() == 3) {
+                            float novaMedia = aluno.calcularMedia();
+                            System.out.println("Nova média calculada: " + novaMedia);
+                        } else {
+                            System.out.println("Nota adicionada com sucesso.");
+                        }
                         jsonManager.salvarDadosAlunos(alunos);
-                        System.out.println("Nota adicionada com sucesso.");
                         return;
                     }
                 }
             }
         }
     }
+
 
 
     public List<AlunoModel> buscarAlunos(String nome) {

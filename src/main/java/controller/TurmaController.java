@@ -19,8 +19,7 @@ public class TurmaController {
 
         for (TurmaModel turma : turmas) {
             if (turma.getNome().equalsIgnoreCase(nome)) {
-                System.out.println("Já existe uma turma com o nome '" + nome + "'.");
-                return;
+                throw new RuntimeException("O nome da sala já existe! Por favor, insira um nome único para a sala.");
             }
         }
 
@@ -29,6 +28,7 @@ public class TurmaController {
         turmas.add(novaTurma);
         jsonManager.salvarDadosTurmas(turmas);
     }
+
 
     public void editarNomeTurma(String nomeAtual, String novoNome) {
         List<TurmaModel> turmas = jsonManager.carregarDadosTurmas();
@@ -61,12 +61,12 @@ public class TurmaController {
         }
     }
 
-    public void adicionarAlunoNaTurma(int idTurma, AlunoModel aluno) {
+    public void adicionarAlunoNaTurma(String nomeTurma, AlunoModel aluno) {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         List<TurmaModel> turmas = jsonManager.carregarDadosTurmas();
 
         boolean alunoExisteNoJSON = alunos != null && alunos.stream()
-                .anyMatch(a -> a.getIdAluno() == aluno.getIdAluno() && a.getNome().equalsIgnoreCase(aluno.getNome()));
+                .anyMatch(a -> a.getNome().equalsIgnoreCase(aluno.getNome()));
 
         if (!alunoExisteNoJSON) {
             System.out.println("O aluno não está cadastrado.");
@@ -74,8 +74,9 @@ public class TurmaController {
         }
 
         boolean alunoJaNaTurma = turmas != null && turmas.stream()
+                .filter(t -> t.getNome().equalsIgnoreCase(nomeTurma))
                 .anyMatch(turma -> turma.getAlunos().stream()
-                        .anyMatch(a -> a.getIdAluno() == aluno.getIdAluno() && a.getNome().equalsIgnoreCase(aluno.getNome())));
+                        .anyMatch(a -> a.getNome().equalsIgnoreCase(aluno.getNome())));
 
         if (alunoJaNaTurma) {
             System.out.println("O aluno já está presente em uma turma.");
@@ -83,7 +84,7 @@ public class TurmaController {
         }
 
         for (TurmaModel turma : turmas) {
-            if (turma.getIdTurma() == idTurma) {
+            if (turma.getNome().equalsIgnoreCase(nomeTurma)) {
                 try {
                     turma.adicionarAluno(aluno);
                     jsonManager.salvarDadosTurmas(turmas);
@@ -95,9 +96,9 @@ public class TurmaController {
             }
         }
 
-
         System.out.println("Turma não encontrada.");
     }
+
 
     public void removerAlunoDaTurma(int idTurma, int idAluno) {
         List<TurmaModel> turmas = jsonManager.carregarDadosTurmas();
