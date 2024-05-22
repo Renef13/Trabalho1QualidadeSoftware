@@ -21,10 +21,13 @@ public class AlunoController {
         jsonManager.salvarDadosAlunos(alunos);
     }
 
-    public void excluirAluno(int idAluno) {
+    public int excluirAluno(int idAluno) {
+        int removed = 0;
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         if (alunos != null) {
-            alunos.removeIf(aluno -> aluno.getIdAluno() == idAluno);
+            if(alunos.removeIf(aluno -> aluno.getIdAluno() == idAluno)){
+                removed = 1;
+            }
             jsonManager.salvarDadosAlunos(alunos);
 
             List<TurmaModel> turmas = jsonManager.carregarDadosTurmas();
@@ -35,6 +38,7 @@ public class AlunoController {
                 jsonManager.salvarDadosTurmas(turmas);
             }
         }
+        return removed;
     }
 
     public void editarNomeAluno(int idAluno, String novoNome) {

@@ -1,0 +1,112 @@
+{
+  "alunos": [
+    {
+      "idAluno": 1,
+      "nome": "James",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 2,
+      "nome": "Maria",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 3,
+      "nome": "Paula",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 4,
+      "nome": "Pedro",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 5,
+      "nome": "Fernanda",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 6,
+      "nome": "João",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 7,
+      "nome": "João",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 8,
+      "nome": "Maria",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 10,
+      "nome": "Pedro",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 11,
+      "nome": "Fernanda",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 12,
+      "nome": "João",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 12,
+      "nome": "João",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 13,
+      "nome": "João",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 14,
+      "nome": "Maria",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 15,
+      "nome": "Paula",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 16,
+      "nome": "Pedro",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 17,
+      "nome": "Fernanda",
+      "listaNotas": [],
+      "media": 0.0
+    },
+    {
+      "idAluno": 18,
+      "nome": "João",
+      "listaNotas": [],
+      "media": 0.0
+    }
+  ]
+}
