@@ -34,7 +34,7 @@ public class CalculoMediaTest {
         assertEquals(media, mediaIngrid, "A média calculada não está correta.");
     }
     @Test
-    public void testCalcularMediaNova() {
+    public void testCalcularMediaNovaNota() {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
@@ -44,8 +44,8 @@ public class CalculoMediaTest {
         //turmaController.criarTurma("Qualidade de Software");
         turmaController.adicionarAlunoNaTurma("Qualidade de Software", thiago);
 
-        float[] notas = { 5f, 5f, 5f, 10 };
-        float media = (notas[0] + notas[1] + notas[3]) / thiago.getNUMAXNOTAS();
+        float[] notas = { 5f, 5f, 5f, 4f };
+        float media = (notas[0] + notas[1] + notas[2]) / thiago.getNUMAXNOTAS();
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[0]);
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[1]);
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[2]);
@@ -62,7 +62,7 @@ public class CalculoMediaTest {
         assertEquals(media, mediaThiago, "A média calculada não está correta.");
     }
     @Test
-    public void testInserirNotaNegativa() {
+    public void testInserirNotasForaDoPadrao() {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
@@ -71,15 +71,15 @@ public class CalculoMediaTest {
 
         turmaController.adicionarAlunoNaTurma("Qualidade de Software", renef);
 
-        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 12f);
+        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 7);
         alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 8f);
-        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 7f);
+        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), -6f);
         alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 6f);
 
         renef = alunoController.buscarAlunos("Renef Silva").getFirst();
         System.out.println("Notas do Aluno: " + renef.getListaNotas());
         System.out.println("Média do Aluno: " + renef.getMedia());
 
-        assertEquals(7, renef.getMedia(), "A média deve ser 10.0.");
+        assertEquals(7, renef.getMedia(), "A média deve ser 7.0.");
     }
 }

@@ -95,7 +95,6 @@ public class TurmaController {
                 return;
             }
         }
-
         System.out.println("Turma não encontrada.");
     }
 

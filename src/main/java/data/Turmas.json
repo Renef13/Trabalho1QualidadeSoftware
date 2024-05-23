@@ -3,22 +3,32 @@
     {
       "idTurma": 1,
       "nome": "Qualidade de Software",
-      "qtdAlunos": 3,
+      "qtdAlunos": 5,
       "mediaTurma": 0.0,
       "alunos": [
         {
           "idAluno": 1,
-          "nome": "Ingrid Coelho",
+          "nome": "Aluno 1",
           "media": 0.0
         },
         {
           "idAluno": 2,
-          "nome": "Thiago Amaral",
+          "nome": "Aluno 2",
           "media": 0.0
         },
         {
           "idAluno": 3,
-          "nome": "Renef Silva",
+          "nome": "Aluno 3",
+          "media": 0.0
+        },
+        {
+          "idAluno": 4,
+          "nome": "Aluno 4",
+          "media": 0.0
+        },
+        {
+          "idAluno": 5,
+          "nome": "Aluno 5",
           "media": 0.0
         }
       ]

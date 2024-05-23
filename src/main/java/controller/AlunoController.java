@@ -93,8 +93,6 @@ public class AlunoController {
         }
     }
 
-
-
     public List<AlunoModel> buscarAlunos(String nome) {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         List<AlunoModel> alunosEncontrados = new ArrayList<>();

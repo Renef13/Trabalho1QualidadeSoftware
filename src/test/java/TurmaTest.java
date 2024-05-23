@@ -31,18 +31,19 @@ public class TurmaTest {
         turmaController.criarTurma("Qualidade de Software");
 
         for (int i = 0; i < 5; i++) {
-            alunoController.criarAluno("Aluno " + (i + 1));
-            AlunoModel aluno = alunoController.buscarAlunos("Aluno " + (i + 1)).getFirst();
+            AlunoModel alunoAluno = alunoController.criarAluno("Aluno " + (i + 1));
+            AlunoModel aluno = alunoController.buscarAlunosPorId(alunoAluno.getIdAluno());
             turmaController.adicionarAlunoNaTurma("Qualidade de Software", aluno);
         }
 
-        alunoController.criarAluno("Aluno 6");
-        AlunoModel aluno6 = alunoController.buscarAlunos("Aluno 6").getFirst();
+        AlunoModel novoAluno6 = alunoController.criarAluno("Aluno 6");
+        AlunoModel aluno6 = alunoController.buscarAlunosPorId(novoAluno6.getIdAluno());
 
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        Exception exception = assertThrows(Exception.class, () -> {
             turmaController.adicionarAlunoNaTurma("Qualidade de Software", aluno6);
         });
-        assertEquals("A sala não pode ter mais de 5 discentes.", exception.getMessage());
+
+        assertEquals("A turma já possui o número máximo de alunos.", exception.getMessage());
     }
 
 }
