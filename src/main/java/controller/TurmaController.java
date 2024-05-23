@@ -61,7 +61,7 @@ public class TurmaController {
         }
     }
 
-    public void adicionarAlunoNaTurma(String nomeTurma, AlunoModel aluno) {
+    public void adicionarAlunoNaTurma(String nomeTurma, AlunoModel aluno) throws Exception {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         List<TurmaModel> turmas = jsonManager.carregarDadosTurmas();
 
@@ -69,8 +69,7 @@ public class TurmaController {
                 .anyMatch(a -> a.getNome().equalsIgnoreCase(aluno.getNome()));
 
         if (!alunoExisteNoJSON) {
-            System.out.println("O aluno não está cadastrado.");
-            return;
+            throw new Exception("O aluno não está cadastrado.");
         }
 
         boolean alunoJaNaTurma = turmas != null && turmas.stream()
@@ -79,24 +78,21 @@ public class TurmaController {
                         .anyMatch(a -> a.getNome().equalsIgnoreCase(aluno.getNome())));
 
         if (alunoJaNaTurma) {
-            System.out.println("O aluno já está presente em uma turma.");
-            return;
+            throw new Exception("O aluno já está presente em uma turma.");
         }
 
         for (TurmaModel turma : turmas) {
             if (turma.getNome().equalsIgnoreCase(nomeTurma)) {
-                try {
-                    turma.adicionarAluno(aluno);
-                    jsonManager.salvarDadosTurmas(turmas);
-                    System.out.println("Aluno adicionado à turma com sucesso.");
-                } catch (Exception e) {
-                    System.out.println("Não foi possível adicionar o aluno à turma: " + e.getMessage());
-                }
+                turma.adicionarAluno(aluno);
+                jsonManager.salvarDadosTurmas(turmas);
+                System.out.println("Aluno adicionado à turma com sucesso.");
                 return;
             }
         }
-        System.out.println("Turma não encontrada.");
+
+        throw new Exception("Turma não encontrada.");
     }
+
 
 
     public void removerAlunoDaTurma(int idTurma, int idAluno) {

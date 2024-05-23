@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class CalculoMediaTest {
 
     @Test
-    public void testCalcularMediaSimples() {
+    public void testCalcularMediaSimples() throws Exception {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
@@ -34,7 +34,7 @@ public class CalculoMediaTest {
         assertEquals(media, mediaIngrid, "A média calculada não está correta.");
     }
     @Test
-    public void testCalcularMediaNovaNota() {
+    public void testCalcularMediaNovaNota() throws Exception {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
@@ -62,7 +62,7 @@ public class CalculoMediaTest {
         assertEquals(media, mediaThiago, "A média calculada não está correta.");
     }
     @Test
-    public void testInserirNotasForaDoPadrao() {
+    public void testInserirNotasForaDoPadrao() throws Exception {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 

@@ -24,7 +24,7 @@ public class TurmaTest {
                 "A mensagem de erro não corresponde à esperada.");
     }
     @Test
-    public void testLimiteDeSala() {
+    public void testLimiteDeSala() throws Exception {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
