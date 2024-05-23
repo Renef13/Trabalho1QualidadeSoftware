@@ -14,12 +14,13 @@ public class AlunoController {
         this.jsonManager = new JsonManager();
     }
 
-    public void criarAluno(String nome) {
+    public AlunoModel criarAluno(String nome) {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         int idAluno = alunos != null ? alunos.size() + 1 : 1;
         AlunoModel novoAluno = new AlunoModel(idAluno, nome);
         alunos.add(novoAluno);
         jsonManager.salvarDadosAlunos(alunos);
+        return novoAluno;
     }
 
     public int excluirAluno(int idAluno) {
@@ -106,17 +107,16 @@ public class AlunoController {
         }
         return alunosEncontrados;
     }
-    public List<AlunoModel> buscarAlunosPorId(int idAluno) {
+    public AlunoModel buscarAlunosPorId(int idAluno) {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
-        List<AlunoModel> alunosEncontrados = new ArrayList<>();
+        AlunoModel alunoEncontrado = null;
         if (alunos != null) {
             for (AlunoModel aluno : alunos) {
                 if (aluno.getIdAluno() == idAluno) {
-                    alunosEncontrados.add(aluno);
+                    alunoEncontrado = aluno;
                 }
             }
         }
-        return alunosEncontrados;
+        return alunoEncontrado;
     }
-
 }

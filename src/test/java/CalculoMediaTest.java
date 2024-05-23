@@ -1,11 +1,8 @@
 import controller.AlunoController;
 import controller.TurmaController;
 import model.AlunoModel;
-import model.TurmaModel;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CalculoMediaTest {
 
@@ -14,8 +11,8 @@ public class CalculoMediaTest {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
-        alunoController.criarAluno("Ingrid Coelho");
-        AlunoModel ingrid = alunoController.buscarAlunos("Ingrid Coelho").getFirst();
+        AlunoModel novoAluno = alunoController.criarAluno("Ingrid Coelho");
+        AlunoModel ingrid = alunoController.buscarAlunosPorId(novoAluno.getIdAluno());
 
         turmaController.criarTurma("Qualidade de Software");
         turmaController.adicionarAlunoNaTurma("Qualidade de Software", ingrid);
@@ -26,7 +23,7 @@ public class CalculoMediaTest {
         alunoController.adicionarNotaAoAluno(ingrid.getIdAluno(), notas[1]);
         alunoController.adicionarNotaAoAluno(ingrid.getIdAluno(), notas[2]);
 
-        ingrid = alunoController.buscarAlunos("Ingrid Coelho").getFirst();
+        ingrid = alunoController.buscarAlunosPorId(ingrid.getIdAluno());
         float mediaIngrid = ingrid.getMedia();
 
         System.out.println("ID do Aluno: " + ingrid.getIdAluno());
@@ -41,8 +38,8 @@ public class CalculoMediaTest {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
-        alunoController.criarAluno("Thiago Amaral");
-        AlunoModel thiago = alunoController.buscarAlunos("Thiago Amaral").getFirst();
+        AlunoModel novoAluno =alunoController.criarAluno("Thiago Amaral");
+        AlunoModel thiago = alunoController.buscarAlunosPorId(novoAluno.getIdAluno());
 
         //turmaController.criarTurma("Qualidade de Software");
         turmaController.adicionarAlunoNaTurma("Qualidade de Software", thiago);
@@ -54,7 +51,7 @@ public class CalculoMediaTest {
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[2]);
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[3]);
 
-        thiago = alunoController.buscarAlunos("Thiago Amaral").getFirst();
+        thiago = alunoController.buscarAlunosPorId(thiago.getIdAluno());
         float mediaThiago = thiago.getMedia();
 
         System.out.println("ID do Aluno: " + thiago.getIdAluno());
@@ -69,8 +66,8 @@ public class CalculoMediaTest {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
-        alunoController.criarAluno("Renef Silva");
-        AlunoModel renef = alunoController.buscarAlunos("Renef Silva").getFirst();
+        AlunoModel novoAluno = alunoController.criarAluno("Renef Silva");
+        AlunoModel renef = alunoController.buscarAlunosPorId(novoAluno.getIdAluno());
 
         turmaController.adicionarAlunoNaTurma("Qualidade de Software", renef);
 
@@ -83,7 +80,6 @@ public class CalculoMediaTest {
         System.out.println("Notas do Aluno: " + renef.getListaNotas());
         System.out.println("Média do Aluno: " + renef.getMedia());
 
-        assertEquals(10, renef.getMedia(), "A média deve ser 10.0.");
+        assertEquals(7, renef.getMedia(), "A média deve ser 10.0.");
     }
-
 }

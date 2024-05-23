@@ -1,0 +1,44 @@
+{
+  "alunos": [
+    {
+      "idAluno": 1,
+      "nome": "Ingrid Coelho",
+      "listaNotas": [
+        8.0,
+        8.0,
+        7.0
+      ],
+      "media": 7.6666665
+    },
+    {
+      "idAluno": 2,
+      "nome": "Thiago Amaral",
+      "listaNotas": [
+        5.0,
+        5.0,
+        10.0
+      ],
+      "media": 6.6666665
+    },
+    {
+      "idAluno": 3,
+      "nome": "Renef Silva",
+      "listaNotas": [
+        8.0,
+        7.0,
+        6.0
+      ],
+      "media": 7.0
+    },
+    {
+      "idAluno": 4,
+      "nome": "Renef Silva",
+      "listaNotas": [
+        8.0,
+        7.0,
+        6.0
+      ],
+      "media": 7.0
+    }
+  ]
+}
