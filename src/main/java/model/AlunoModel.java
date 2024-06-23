@@ -1,6 +1,5 @@
 package model;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,9 +71,6 @@ public class AlunoModel {
             System.out.println(e.getMessage());
         }
     }
-
-
-
 
 }
 
