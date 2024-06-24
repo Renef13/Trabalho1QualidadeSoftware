@@ -27,7 +27,7 @@ public class AlunoController {
         int removed = 0;
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         if (alunos != null) {
-            if(alunos.removeIf(aluno -> aluno.getIdAluno() == idAluno)){
+            if (alunos.removeIf(aluno -> aluno.getIdAluno() == idAluno)) {
                 removed = 1;
             }
             jsonManager.salvarDadosAlunos(alunos);
@@ -56,43 +56,6 @@ public class AlunoController {
         }
     }
 
-    public void adicionarNotaAoAluno(int idAluno, float nota) {
-        List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
-        if (alunos != null) {
-            for (AlunoModel aluno : alunos) {
-                if (aluno.getIdAluno() == idAluno) {
-                    if (aluno.getListaNotas() != null && aluno.getListaNotas().size() >= aluno.getNUMAXNOTAS()) {
-                        float mediaAtual = aluno.calcularMedia();
-                        if (mediaAtual < 7) {
-                            float menorNota = Collections.min(aluno.getListaNotas());
-                            if (nota > menorNota) {
-                                aluno.getListaNotas().remove(menorNota);
-                                aluno.getListaNotas().add(nota);
-                                aluno.setMedia(aluno.calcularMedia());
-                                jsonManager.salvarDadosAlunos(alunos);
-                            } else {
-                                System.out.println("Nota não adicionada.");
-                            }
-                        } else {
-                            System.out.println("O aluno já possui três notas e sua média é maior que 7.0. Não é possível adicionar mais notas.");
-                            return;
-                        }
-                    } else {
-                        aluno.adicionarNota(nota);
-                        if (aluno.getListaNotas().size() == aluno.getNUMAXNOTAS()) {
-                            float novaMedia = aluno.calcularMedia();
-                            System.out.println("Nova média calculada: " + novaMedia);
-                        } else {
-                            System.out.println("Nota adicionada com sucesso.");
-                        }
-                        jsonManager.salvarDadosAlunos(alunos);
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
     public List<AlunoModel> buscarAlunos(String nome) {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         List<AlunoModel> alunosEncontrados = new ArrayList<>();
@@ -105,6 +68,7 @@ public class AlunoController {
         }
         return alunosEncontrados;
     }
+
     public AlunoModel buscarAlunosPorId(int idAluno) {
         List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
         AlunoModel alunoEncontrado = null;
@@ -117,4 +81,76 @@ public class AlunoController {
         }
         return alunoEncontrado;
     }
+
+    public void adicionarNotaAoAluno(int idAluno, float nota) {
+        AlunoModel aluno = buscarAlunosPorId(idAluno);
+
+        if (aluno == null) {
+            System.out.println("Aluno não encontrado.");
+            return;
+        }
+
+        adicionarNota(aluno, nota);
+        salvarAlunoNoJson(aluno);
+    }
+
+    private void adicionarNota(AlunoModel aluno, float nota) {
+        if (aluno.getListaNotas() == null) {
+            adicionarPrimeiraNota(aluno, nota);
+        } else if (aluno.getListaNotas().size() >= aluno.getNUMAXNOTAS()) {
+            adicionarNotaComLimite(aluno, nota);
+        } else {
+            adicionarNotaSemLimite(aluno, nota);
+        }
+    }
+
+    private void adicionarPrimeiraNota(AlunoModel aluno, float nota) {
+        aluno.adicionarNota(nota);
+        System.out.println("Nota adicionada com sucesso.");
+    }
+
+    private void adicionarNotaComLimite(AlunoModel aluno, float nota) {
+        if (aluno.calcularMedia() >= 7) {
+            System.out.println("O aluno já possui três notas e sua média é maior ou igual a 7.0. Não é possível adicionar mais notas.");
+        } else {
+            float menorNota = Collections.min(aluno.getListaNotas());
+            if (nota > menorNota) {
+                substituirMenorNota(aluno, menorNota, nota);
+            } else {
+                System.out.println("Nota não adicionada.");
+            }
+        }
+    }
+
+    private void adicionarNotaSemLimite(AlunoModel aluno, float nota) {
+        aluno.adicionarNota(nota);
+        if (aluno.getListaNotas().size() == aluno.getNUMAXNOTAS()) {
+            float novaMedia = aluno.calcularMedia();
+            System.out.println("Nova média calculada: " + novaMedia);
+        } else {
+            System.out.println("Nota adicionada com sucesso.");
+        }
+    }
+
+    private void substituirMenorNota(AlunoModel aluno, float menorNota, float novaNota) {
+        aluno.getListaNotas().remove(menorNota);
+        aluno.getListaNotas().add(novaNota);
+        aluno.setMedia(aluno.calcularMedia());
+        System.out.println("Nota adicionada com sucesso.");
+    }
+
+
+    private void salvarAlunoNoJson(AlunoModel aluno) {
+        List<AlunoModel> alunos = jsonManager.carregarDadosAlunos();
+        if (alunos != null) {
+            for (int i = 0; i < alunos.size(); i++) {
+                if (alunos.get(i).getIdAluno() == aluno.getIdAluno()) {
+                    alunos.set(i, aluno);
+                    break;
+                }
+            }
+            jsonManager.salvarDadosAlunos(alunos);
+        }
+    }
+
 }

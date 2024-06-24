@@ -41,11 +41,11 @@ public class CalculoMediaTest {
         AlunoModel novoAluno =alunoController.criarAluno("Thiago Amaral");
         AlunoModel thiago = alunoController.buscarAlunosPorId(novoAluno.getIdAluno());
 
-        //turmaController.criarTurma("Qualidade de Software");
+        turmaController.criarTurma("Qualidade de Software");
         turmaController.adicionarAlunoNaTurma("Qualidade de Software", thiago);
 
-        float[] notas = { 5f, 5f, 5f, 4f };
-        float media = (notas[0] + notas[1] + notas[2]) / thiago.getNUMAXNOTAS();
+        float[] notas = { 5f, 5f, 5f, 10f };
+        float media = (notas[0] + notas[1] + notas[3]) / thiago.getNUMAXNOTAS();
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[0]);
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[1]);
         alunoController.adicionarNotaAoAluno(thiago.getIdAluno(), notas[2]);
@@ -73,7 +73,7 @@ public class CalculoMediaTest {
 
         alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 7);
         alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 8f);
-        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), -6f);
+        alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 12f);
         alunoController.adicionarNotaAoAluno(renef.getIdAluno(), 6f);
 
         renef = alunoController.buscarAlunos("Renef Silva").getFirst();

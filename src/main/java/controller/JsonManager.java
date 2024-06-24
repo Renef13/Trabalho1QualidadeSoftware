@@ -3,6 +3,7 @@ package controller;
 import com.google.gson.*;
 import model.AlunoModel;
 import model.TurmaModel;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class JsonManager {
         gson = new GsonBuilder().setPrettyPrinting().create();
         criarArquivosSeNaoExistem();
     }
+
     private void criarArquivosSeNaoExistem() {
         File turmasFile = new File(turmasFilePath);
         File alunosFile = new File(alunosFilePath);
@@ -85,54 +87,6 @@ public class JsonManager {
         }
     }
 
-public List<TurmaModel> carregarDadosTurmas() {
-    try (Reader reader = new FileReader(turmasFilePath)) {
-        if (reader.ready()) {
-            JsonElement jsonElement = JsonParser.parseReader(reader);
-            if (jsonElement.isJsonObject()) {
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
-                if (jsonObject.has("turmas")) {
-                    JsonArray turmasArray = jsonObject.getAsJsonArray("turmas");
-
-                    List<TurmaModel> turmas = new ArrayList<>();
-                    for (JsonElement element : turmasArray) {
-                        JsonObject turmaObject = element.getAsJsonObject();
-                        int idTurma = turmaObject.get("idTurma").getAsInt();
-                        String nome = turmaObject.get("nome").getAsString();
-                        int qtdAlunos = turmaObject.get("qtdAlunos").getAsInt();
-                        float mediaTurma = turmaObject.get("mediaTurma").getAsFloat();
-
-                        List<AlunoModel> alunos = new ArrayList<>();
-                        JsonArray alunosArray = turmaObject.getAsJsonArray("alunos");
-                        if (alunosArray != null) {
-                            for (JsonElement alunoElement : alunosArray) {
-                                JsonObject alunoObject = alunoElement.getAsJsonObject();
-                                int idAluno = alunoObject.get("idAluno").getAsInt();
-                                String nomeAluno = alunoObject.get("nome").getAsString();
-                                alunos.add(new AlunoModel(idAluno, nomeAluno));
-                            }
-                        }
-                        turmas.add(new TurmaModel(idTurma, nome, qtdAlunos, mediaTurma, alunos));
-                    }
-                    return turmas;
-                } else {
-                    System.out.println("Arquivo de turmas não contém a chave 'turmas'.");
-                    return new ArrayList<>();
-                }
-            } else {
-                System.out.println("O conteúdo do arquivo de turmas não é um objeto JSON válido.");
-                return new ArrayList<>();
-            }
-        } else {
-
-            return new ArrayList<>();
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
-        return null;
-    }
-}
-
     public void salvarDadosAlunos(List<AlunoModel> alunos) {
         JsonObject jsonObject = new JsonObject();
         JsonArray alunosArray = new JsonArray();
@@ -162,49 +116,97 @@ public List<TurmaModel> carregarDadosTurmas() {
         }
     }
 
-public List<AlunoModel> carregarDadosAlunos() {
-    try (Reader reader = new FileReader(alunosFilePath)) {
-        if (reader.ready()) {
-            JsonElement jsonElement = JsonParser.parseReader(reader);
-            if (jsonElement.isJsonObject()) {
-                JsonObject jsonObject = jsonElement.getAsJsonObject();
-                if (jsonObject.has("alunos")) {
-                    JsonArray alunosArray = jsonObject.getAsJsonArray("alunos");
+    public List<AlunoModel> carregarDadosAlunos() {
+        try (Reader reader = new FileReader(alunosFilePath)) {
+            if (reader.ready()) {
+                JsonElement jsonElement = JsonParser.parseReader(reader);
+                if (jsonElement.isJsonObject()) {
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+                    if (jsonObject.has("alunos")) {
+                        JsonArray alunosArray = jsonObject.getAsJsonArray("alunos");
 
-                    List<AlunoModel> alunos = new ArrayList<>();
-                    for (JsonElement element : alunosArray) {
-                        JsonObject alunoObject = element.getAsJsonObject();
-                        int idAluno = alunoObject.get("idAluno").getAsInt();
-                        String nome = alunoObject.get("nome").getAsString();
+                        List<AlunoModel> alunos = new ArrayList<>();
+                        for (JsonElement element : alunosArray) {
+                            JsonObject alunoObject = element.getAsJsonObject();
+                            int idAluno = alunoObject.get("idAluno").getAsInt();
+                            String nome = alunoObject.get("nome").getAsString();
 
-                        List<Float> listaNotas = new ArrayList<>();
-                        JsonArray notasArray = alunoObject.getAsJsonArray("listaNotas");
-                        if (notasArray != null) {
-                            for (JsonElement notaElement : notasArray) {
-                                listaNotas.add(notaElement.getAsFloat());
+                            List<Float> listaNotas = new ArrayList<>();
+                            JsonArray notasArray = alunoObject.getAsJsonArray("listaNotas");
+                            if (notasArray != null) {
+                                for (JsonElement notaElement : notasArray) {
+                                    listaNotas.add(notaElement.getAsFloat());
+                                }
                             }
+
+                            float media = alunoObject.get("media").getAsFloat();
+
+                            alunos.add(new AlunoModel(idAluno, nome, listaNotas, media));
                         }
 
-                        float media = alunoObject.get("media").getAsFloat();
-
-                        alunos.add(new AlunoModel(idAluno, nome, listaNotas, media));
+                        return alunos;
+                    } else {
+                        System.out.println("Arquivo de alunos não contém a chave 'alunos'.");
+                        return new ArrayList<>();
                     }
-
-                    return alunos;
                 } else {
-                    System.out.println("Arquivo de alunos não contém a chave 'alunos'.");
+                    System.out.println("O conteúdo do arquivo de alunos não é um objeto JSON válido.");
                     return new ArrayList<>();
                 }
             } else {
-                System.out.println("O conteúdo do arquivo de alunos não é um objeto JSON válido.");
                 return new ArrayList<>();
             }
-        } else {
-            return new ArrayList<>();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-        return null;
     }
-}
+
+    public List<TurmaModel> carregarDadosTurmas() {
+        try (Reader reader = new FileReader(turmasFilePath)) {
+            if (reader.ready()) {
+                JsonElement jsonElement = JsonParser.parseReader(reader);
+                if (jsonElement.isJsonObject()) {
+                    JsonObject jsonObject = jsonElement.getAsJsonObject();
+                    if (jsonObject.has("turmas")) {
+                        JsonArray turmasArray = jsonObject.getAsJsonArray("turmas");
+
+                        List<TurmaModel> turmas = new ArrayList<>();
+                        for (JsonElement element : turmasArray) {
+                            JsonObject turmaObject = element.getAsJsonObject();
+                            int idTurma = turmaObject.get("idTurma").getAsInt();
+                            String nome = turmaObject.get("nome").getAsString();
+                            int qtdAlunos = turmaObject.get("qtdAlunos").getAsInt();
+                            float mediaTurma = turmaObject.get("mediaTurma").getAsFloat();
+
+                            List<AlunoModel> alunos = new ArrayList<>();
+                            JsonArray alunosArray = turmaObject.getAsJsonArray("alunos");
+                            if (alunosArray != null) {
+                                for (JsonElement alunoElement : alunosArray) {
+                                    JsonObject alunoObject = alunoElement.getAsJsonObject();
+                                    int idAluno = alunoObject.get("idAluno").getAsInt();
+                                    String nomeAluno = alunoObject.get("nome").getAsString();
+                                    alunos.add(new AlunoModel(idAluno, nomeAluno));
+                                }
+                            }
+                            turmas.add(new TurmaModel(idTurma, nome, qtdAlunos, mediaTurma, alunos));
+                        }
+                        return turmas;
+                    } else {
+                        System.out.println("Arquivo de turmas não contém a chave 'turmas'.");
+                        return new ArrayList<>();
+                    }
+                } else {
+                    System.out.println("O conteúdo do arquivo de turmas não é um objeto JSON válido.");
+                    return new ArrayList<>();
+                }
+            } else {
+
+                return new ArrayList<>();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

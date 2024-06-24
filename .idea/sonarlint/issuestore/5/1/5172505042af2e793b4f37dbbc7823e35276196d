@@ -1,0 +1,25 @@
+
+q
+java:S1141M"5Extract this nested try block into a separate method.(¯ÜÈåJ$580cb3be-c8b3-4ebc-a90f-73011d62749a
+ˆ
+java:S1192F"GDefine a constant instead of duplicating this literal "alunos" 5 times.(áßìüÿÿÿÿJ$ded3f169-d02b-487c-988a-b3030492f5a6
+‰
+java:S1192A"HDefine a constant instead of duplicating this literal "idAluno" 4 times.(Å±Ê¤ùÿÿÿÿJ$2cfe9656-87e8-416f-95e3-f25e9bfed79e
+‚
+java:S1192C"FDefine a constant instead of duplicating this literal "media" 3 times.(ŠÍ¨¹J$c40df2bd-88fb-486c-bb73-dd912a580f1f
+Š
+java:S1192K"GDefine a constant instead of duplicating this literal "turmas" 3 times.(ÄÄùÛ8½‘«¾„2J$314be0e6-07e1-45a4-990f-4d9d3e0bb226
+]
+java:S1170"!Make this final field static too.(ºßµîJ$d36f3c98-248b-443d-ba60-2efe5a3eace9
+b
+java:S1170"!Make this final field static too.(íÌ²™ıÿÿÿÿJ$fe7238d2-7e8d-402e-bd1e-732b7544c1d5
+‚	java:S899"BDo something with the "boolean" value returned by "createNewFile".(©Ûª¾üÿÿÿÿJ$2ebf2f4a-4c56-446d-96f7-b68299b7cf51
+‚	java:S899!"BDo something with the "boolean" value returned by "createNewFile".(Ïãù‹ûÿÿÿÿJ$2abf7477-f6c3-4286-9a23-c41cfc448c58
+“
+java:S3776w"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(É›¼¯şÿÿÿÿJ$3c054498-f4cc-4549-bfdb-3ecdeb1c0ecd
+h
+java:S1168¡"+Return an empty collection instead of null.(¥¹ïJ$65bc77b5-a385-4534-ac5d-1e63ec160a01
+–
+java:S3776¥"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ÜôÀ8ı‘«¾„2J$d6ad3ed0-3ed0-41b0-a6ac-3c7252a7bc99
+o
+java:S1168Ñ"+Return an empty collection instead of null.(¥¹ï8ˆ’«¾„2J$953a5971-9f67-479f-87f9-6aeecddc10f9
