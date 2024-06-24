@@ -28,7 +28,7 @@ public class TurmaTest {
         AlunoController alunoController = new AlunoController();
         TurmaController turmaController = new TurmaController();
 
-        turmaController.criarTurma("Qualidade de Software");
+        //turmaController.criarTurma("Qualidade de Software");
 
         for (int i = 0; i < 5; i++) {
             AlunoModel alunoAluno = alunoController.criarAluno("Aluno " + (i + 1));
